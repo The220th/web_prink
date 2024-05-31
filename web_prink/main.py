@@ -25,8 +25,10 @@ def print_pdf_main(input_file):
     return res
 
 
-def scan_file_main(format_text: str, resolution: str):
-    res_file = scan_file(int(resolution), format_text)
+def scan_file_main(format_text: str, resolution: str, crop: str):
+    if format_text is None or resolution is None or crop is None:
+        return "Please define Output format, Resolution and Crop. "
+    res_file = scan_file(int(resolution), format_text, crop)
     return res_file
 
 
@@ -61,9 +63,11 @@ def main():
         with gr.Tab("Scan"):
             input2_1 = gr.Radio(["tiff", "png", "pdf"], label="Output format")
             input2_2 = gr.Radio(["200", "100", "500", "1000"], label="Resolution")
+            input2_3 = gr.Radio(["A4", "None"], label="Crop")
             output2 = gr.File(label="Download scanned file. ")
             submit2 = gr.Button("Scan")
-            submit2.click(scan_file_main, inputs=[input2_1, input2_2], outputs=[output2])
+            submit2.click(scan_file_main, inputs=[input2_1, input2_2, input2_3], outputs=[output2])
 
+    # demo.launch(server_name="127.0.0.1")
     demo.launch()
 
