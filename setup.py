@@ -2,6 +2,7 @@
 
 from setuptools import setup, find_packages
 import os
+import sys
 
 # https://setuptools.pypa.io/en/latest/userguide/quickstart.html
 
@@ -19,8 +20,8 @@ req_txt_path = os.path.join(base_dir, "requirements.txt")
 ver_path = os.path.join(base_dir, "web_prink")
 ver_path = os.path.join(ver_path, "__version__.py")
 
-with open(req_txt_path, "r", encoding="utf-8") as fd:
-    requires = fd.read().splitlines()
+# with open(req_txt_path, "r", encoding="utf-8") as fd:
+#     requires = fd.read().splitlines()  # thx, python12
 
 main_ns = {}
 with open(ver_path, "r", encoding="utf-8") as ver_file_fd:
@@ -29,7 +30,7 @@ with open(ver_path, "r", encoding="utf-8") as ver_file_fd:
 setup(
     name="web_prink",
     version=main_ns["__version__"],
-    install_requires=requires,
+    install_requires=["gradio", "pypdf"],
     packages=find_packages(
         # All keyword arguments below are optional:
         where='.',  # '.' by default
@@ -40,5 +41,8 @@ setup(
                 "web_prink = web_prink.main:main",
             ]
     },
-    include_package_data=False,
+    # include_package_data=True,  # setuptools is so stupid...
+    # package_data={
+    #     "static": ["static/execs.json"]
+    # }
 )

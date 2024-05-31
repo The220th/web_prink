@@ -60,6 +60,7 @@ def main():
 
         with gr.Tab("Scan"):
             input2 = gr.Radio(["tiff", "png", "pdf"], label="Output format")
+            input2 = gr.Radio(["200", "100", "500", "1000"], label="Resolution")
             output2 = gr.File(label="Download scanned file. ")
             submit2 = gr.Button("Scan")
             submit2.click(scan_file_main, inputs=[input2], outputs=[output2])
