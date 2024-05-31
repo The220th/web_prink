@@ -25,8 +25,8 @@ def print_pdf_main(input_file):
     return res
 
 
-def scan_file_main(format_text: str):
-    res_file = scan_file(200, format_text)
+def scan_file_main(format_text: str, resolution: str):
+    res_file = scan_file(int(resolution), format_text)
     return res_file
 
 
@@ -59,11 +59,11 @@ def main():
             submit1.click(print_pdf_main, inputs=[input1], outputs=[output1])
 
         with gr.Tab("Scan"):
-            input2 = gr.Radio(["tiff", "png", "pdf"], label="Output format")
-            input2 = gr.Radio(["200", "100", "500", "1000"], label="Resolution")
+            input2_1 = gr.Radio(["tiff", "png", "pdf"], label="Output format")
+            input2_2 = gr.Radio(["200", "100", "500", "1000"], label="Resolution")
             output2 = gr.File(label="Download scanned file. ")
             submit2 = gr.Button("Scan")
-            submit2.click(scan_file_main, inputs=[input2], outputs=[output2])
+            submit2.click(scan_file_main, inputs=[input2_1, input2_2], outputs=[output2])
 
     demo.launch()
 

@@ -4,4 +4,3 @@ venv
 build
 dist
 web_prink.egg-info
-web_prink/execs.json

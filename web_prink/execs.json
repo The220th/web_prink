@@ -1,4 +1,0 @@
-{
-    "print_command": "sudo lpr -P M1132 {print_file}",
-    "scan_command": "sudo scanimage -d hpaio:/usb/HP_LaserJet_Professional_M1132_MFP?serial=000000000QH4ZWEHPR1a --mode Color --resolution {resolution} --format {format} --progress --output-file={output_file}"
-}
